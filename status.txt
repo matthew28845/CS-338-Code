@@ -1,0 +1,3 @@
+Matthew Sigmond
+
+I plan to use Kali in a VM on my desktop PC runing Linux, and have set up the premade VMWare VM.
