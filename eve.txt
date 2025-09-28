@@ -1,0 +1,13 @@
+=====DIFFIE HELLMAN=====
+
+To calculate what Alice and Bob's secret integers are, I used this simple python code:
+
+ for i in range (103):
+     if 5**i%103 == 10:
+         print(i)
+Since Alice sent Bob 10, we know that for her secret number x, 5**x mod 103 = 10. Thus, we can brute-force this process by just checking every integer from 1-103, revealing that 45 is Alice's private number. We can do the same process for Bob's secret number, since we know that for his private number y, 5**y mod 103 = 71. This reveals that his secret number is 67. This part, of course, is really only feasible with prime numbers this small, since there are only 103 possible values for anything mod 103, so we only need to run this loop 103 times. Not the case for a 600-digit prime number. 
+
+Now, we can manually calculate their shared secret and simultaneously check our work. The shared secret should be 10**67%103, or 71**45%103, which are both 31, so we know we did this right. Neat!
+
+=====RSA=====
+
