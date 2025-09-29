@@ -1,3 +1,5 @@
+Worked with Jane Parson
+
 =====DIFFIE HELLMAN=====
 
 To calculate what Alice and Bob's secret integers are, I used this simple python code:
@@ -11,3 +13,34 @@ Now, we can manually calculate their shared secret and simultaneously check our 
 
 =====RSA=====
 
+The encrypted message sent from Alice to Bob is: "Hey Bob, here's some cryptography history for you: https://en.wikipedia.org/wiki/The_Magic_Words_are_Squeamish_Ossifrage/. Happy factoring, Alice."
+
+The first part of solving this was solving for Bob's private key. 266473's only two prime factors (besides itself and 1) are 439 and 607, so that is our pB and qB. λ(nB) is 44238. Since we know eB from the public key, all we have to do is calculate dB. Since we know that eBdBmodλ(nB) = 1, we can write a similar Python program to brute-foirce this:
+
+for i in range (44238):
+    if 17*i%44238 == 1:
+        print(i)
+
+This code returns 10409, so we know that is dB. With Bob's private key, we can then manually decode all of Alice's bytes:
+
+array = [42750, 225049, 67011, 9062, 263924, 83744, 10951, 156009,
+174373, 125655, 207173, 200947, 227576, 183598, 148747, 211083,
+225049, 218587, 191754, 164498, 225049, 171200, 193625, 99766,
+94020, 223044, 38895, 74666, 48846, 219950, 139957, 77545,
+171672, 165278, 150326, 262673, 164498, 142355, 77545, 171672,
+255299, 5768, 264753, 75667, 261607, 31371, 164498, 140654,
+244325, 140696, 40948, 179472, 168428, 34824, 32543, 30633,
+104926, 190298, 148747, 132510, 42607, 232272, 42721, 188452,
+239228, 50536, 216512, 139240, 78779, 166647, 100152, 261607,
+121165]
+
+for num in array:
+    calculated = num**10409%266473
+    binary = bin(calculated)
+    print(str(0)+binary[2:9])
+    print(str(0)+binary[2:])
+
+Notably, each integer in the array is actually two binary ASCII values smooshed together, so we need a bit of extra code to split them up.The binary() function in Python also returns a string with "0b" in the front, so we need to chop that off. Annoying!
+This code returns a bunch of binary numbers, which when put into the translator at https://www.rapidtables.com/convert/number/binary-to-ascii.html, return our message.
+
+Like before, if the secret integers used were much higher, this would take exponentially longer to calculate. But even with larger integers, this is still an insecure method of encoding, since it's a block cipher, and each block is encrypted independently, which means it's very easy to recognize patterns among the blocks.
