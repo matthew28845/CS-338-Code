@@ -1,0 +1,21 @@
+Matthew Sigmond
+
+=====Simple Communication Scenarios=====
+1. Alice and Bob use a Diffie-Hellman exchange to agree on a shared secret and AES key K. Alice sends Bob AES(K, M), and Bob decrypts it with AES_D(K, C). They will need to use Diffie-Hellman to encrypt their message, because they won't have met in person. D-H is vulnerable to AITM attacks, but since AITM is impossible in this scenario, there is no need to bother with hash functions to strengthen D-H.
+
+2. Alice and Bob establish public/secret keypairs. Alice sends Bob M||Sig, where Sig = E(S_A, H(M)). Bob, after receiving the message, checks to see if E(P_A, Sig) = H(M) (where H(M) is his own hashing of M). This works as signature verification because only Alice will have access to S_A, so if we can decrypt her message with P_A, we know it came from her. Since we are only encrypting the hash of M, this is a small enough message for us to encrypt.
+
+3. Alice and Bob use a Diffie-Hellman exchange to agree on a shared secret and AES key K. Then, they both establish public/secret keypairs. Alice sends Bob AES(K, M), and Bob decrypts it with AES_D(K, C). To verify her identity, Alice then hashes her original message and sends Bob E(S_A, H(M)). Bob can do the same signature verification as before on his decrypted version of the message, and he will be able to see it. Since AITM is again impossible in this scenario, we can freely send stuff over a D-H exchange without worrying about that.
+
+
+=====Questions About Breaking Security=====
+4. 1. A malicious actor accessed Alice's computer after she left it in a coffee shop and didn't lock the screen while she went to the bathroom.  This person modified the contract she was writing and sent it to Bob with her signature that was saved in Adobe Acrobat. I think this is somewhat likely to have happened, depending on how important the contract was.
+   2. Bob edited the contract himself after receiving it from Alice. This could not have happened if Alice digitally sealed the document after writing it using PKI, which Adobe Acrobat should do automatically, so this is not very likely.
+   3. A solar flare caused several bits to flip on Alice's hard drive, and the PDF was corrupted (but still readable) as she was signing it. This is pretty unlikely to have actually happened.
+
+5. Something like (P_CA, E(S_CA, H(P_B))). This would allow anyone to use the CA's public key in the way described above to see if the certificate they're using was the same one sent to the CA.
+
+6. A PKI must be set up (with some level of actual human interaction, to the horror of many) where a CA links Bob to his private key and maintains a database of keys. Alice can then check with the CA to make sure that the key she got from Bob is the same one the CA stores.
+
+7. 1. An armed Mal breaks into the CA's headquarters and forces all of the nerds working there to give up Bob's private key.
+   2. (more likely) Mal guesses Bob's password, logs into his web hosting provider, and edits his website.
