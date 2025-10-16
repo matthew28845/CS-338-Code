@@ -1,0 +1,42 @@
+Matt Sigmond - Ethical Analysis
+
+=====Scenario #1=====
+The main ethical question in this scenario is whether to disclose the bug to InstaToonz before you disclose it to the public (or, I guess, not touch it at all and let somebody else discover this bug who is likely to be way less moral than you.)
+
+The most relevant stakeholders in the scenario are:
+* the InstaToonz users, who have the rights to their copyrighted material as well as the right to the privacy of their messages as stated in InstaToonz's privacy policy
+* InstaToonz Inc., who has the right to their app's code
+* InstaToonz employees, who have the right to either fix or not fix the bug
+* you, the security researcher, who has the right to disclose the bug.
+
+It would be helpful to know in this scenario specifically what kind of music-sharing app InstaToonz is. I assume based on the context that it's some sort of platform where artists share their own, copyrighted music legally (as opposed to LimeWire or SoulSeek,) but is it also a marketplace where people can buy the songs that are uploaded to it, or is it purely streaming?
+
+The possible actions to take at this point are to:
+* report the bug to InstaToonz, which would be the most surefire way to get it fixed in as little time as possible but could ruin your life and wouldn't gain you anything financially
+* sell the bug to a malicious actor, which would compromise hundreds of millions of people's privacy, but get you a lot of money
+* do nothing. Let fate decide whether this bug will make it into the hands of malicious actors. Walk away with nothing, but also with the reassurance that you won't be facing legal action.
+
+The ACM's Code advises us to put the public good at the center of our concern, avoid harm, and informm all appropriate parties of potential problems. Surely, all of these can be taken to mean "tell the user about this breach of privacy."
+
+I think the way I would go about this scenario is to disclose the bug anonymously if possible, give InstaToonz ample time to fix the bug, and if enough time passes to where it's clear that they aren't going to fix it, I would disclose it to the public in enough detail to prove my credibility but in a vague enough way to not immediately make how the bug works obvious to someone else. Assuming that I'll be in the US, the DMCA aspect is interesting, and would totally implicate me if they found out who I was. So, if it were impossible to report this bug anonymously, I think the best way to proceed would just be not to touch it, since I would have already broken the law by even figuring this out and InstaToonz would have way more solid of a case against me if my bug required you to do something illegal to work.
+
+=====Scenario #2=====
+The main ethical questions in this scenario are whether to stop this data pilfering from happening, and in the case that you are unable to, whether to continue working for Beerz.
+
+The most relevant stakeholders in this scenario are:
+* Beerz users, who have the right to know how their location data will be used
+* the CEO, who has the right to sell that location data if the users agree to it
+* the CTO, who has the right to make informed decisions and push for her vision
+* companies who buy the location data, who have the right to use it for whatever they want
+* you, the employee, who has the right to stand up for the CTO's vision and advocate for the users' privacy, but also to not
+
+I could make a more informed decision in this scenario if I knew what Beerz' privacy policy was. Did we tell the users that their data might be sold to advertisers or what we would use it for? It's also a pretty big oversight in the application's design if we delete users' locations from the servers but also maintain a data log that contains everyone's location.
+
+The possible actions to take at this point are to:
+* defend your position. Make your case to the CEO that we shouldn't be selling people's data. Potentially refuse to implement the feature/quit if it doesn't turn out like you feel it should. This would mean maybe losing your job, but at the same time protecting the rights of your users (and Beerz' reputation if this turns into a scandal.)
+* acquiesce. Implement the feature as the CEO desires, and maybe petition for improved privacy in the future. This feature would require Beerz to create a new privacy policy, and unless their old one was very laissez-faire, it would be illegal to just sell the old location data as the moronic coworker suggests. This means you could potentially be put in legal jeopardy for implementing the feature.
+* quit. Throw in the towel, and announce to your coworkers at Beerz that you do not feel comfortable working for a company that treats its customers so poorly. This would probably mean the feature would be implemented anyway and you wouldn't have really stopped anything.
+
+The ACM's Code encourages us to only collect the minimum amount of personal information required to make the system work, to only use personal information for means that don't violate individual rights, and establish transparent policies that allow the user to see how their data is being used, give informed consent for the usage of that data, and delete it if they no longer wish to be a part of the system.
+
+With this in mind, what I would do is defend my position, emphasizing to the CEO the fact that selling people's data in the way the moronic coworker suggests is likely illegal, and that I applied to work at a company whose values align with the CTO's. If Beerz is that great of a company to work for, I would be passionate enough to want to keep it from being enshittified. If the CEO is really hardheaded and doesn't want to listen to me, I would quit, and raise alarms over social media about this potential privacy concern with the app. Thankfully, there isn't really a way in this scenario that I would be harmful to me to inform people of the privacy concern.
