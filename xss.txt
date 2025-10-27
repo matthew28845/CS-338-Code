@@ -1,0 +1,22 @@
+Matt Sigmond
+
+=====Part 1: Cookies=====
+a. There is one cookie, named "theme", whose value is currently "default".
+b. As expected, the theme cookie changes its value to "red" or "blue".
+c. The browser responds to the initial GET request with the header "Set-Cookie: theme=default; Expires=Sun, 25 Jan 2026 00:40:34 GMT; Path=/. Upon clicking "red" in the menu, the browser sends back in its response "Set-Cookie: theme=red; Expires=Sun, 25 Jan 2026 00:40:51 GMT; Path=/"
+d. Yes!
+e. It uses CSS. There are CSS classes for "red" and "blue", and when you navigate to /?theme=red or /?theme=blue, it sets certain elements ot have those classes. So, you actually get a slightly different page.
+f. When the browser sees that you have the cookie for "red" or "blue", it sends you the red or blue version of the page instead of the default.
+g. Manually set the value of the cookie yourself. In Firefox, this is under the Storage tab.
+h. Turn on Intercept mode, and change the cookie header in the browser's GET request.
+i. Acccording to Mozilla, for Firefox they are stored in the profile folder, which on my Linux computer is under /home/matthew/.mozilla/firefox/
+
+=====Part 2: XSS=====
+a. https://www.geeksforgeeks.org/ethical-hacking/what-is-cross-site-scripting-xss/
+    *Reflected XSS = the input has to be provided each time to execute
+    *Stored XSS = the response with the payload is stored on the server, and it is executed just by visiting the page
+    *DOM Based XSS = user data is entered into DOM elements without proper sanitizing
+b. Professor Moriarty posts a malicious post containing some JavaScript. Upon viewing the post, since the website does not properly sanitize the post contents, the browser will execute whatever JavaScript was entered into the post content.
+c. If the website was storing a cookie containing sensitive information, an attacker could steal that cookie.
+d. An attacker could clone FDF, and discreetly redirect the user to their own version of FDF where the victim logs in and has their credentials stolen.
+e. Sanitize the posts!!  Make it so that entering in <script> doesn't actually let the poster execute whatever JavaScript they want.
