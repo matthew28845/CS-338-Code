@@ -1,0 +1,21 @@
+=====PART 1=====
+a. Go to the URL http://danger.jeffondich.com/uploadedimages/sigmondm-webshell.php?command=whoami (or wherever the webshell is uploaded.) This prints "www-data", indicating that the server is running the command as the user www-data.
+b. This HTML tag defines the text as preformatted. This means that when the command output is displayed in the page, it won't mess with the whitespace and newlines. When we get rid of it, it just prints the command output with default HTML formatting.
+
+=====PART 2=====
+a. /var/www/danger.jeffondich.com/uploadedimages
+b. root, daemon, bin, sys, sync, games, man, lp, mail, news, uucp, proxy, www-data, backup, list, irc, gnats, nobody, systemd-network, systemd-resolve, messagebus, systemd-timesync, syslog, _apt, tss, uuidd, tcpdump, usbmux, sshd, pollinate, landscape, fwupd-refresh, jeff, postgres, bullwinkle, dhcpcd, polkitd. I found this by running "getent passwd"
+c. No, but it would contain this same list of users. I just accessed it in a different way
+d. No. It would contain a list of the users and their encrypted passwords.
+e. ../youwontfindthiswithgobuster/secret.txt contains ASCII art of two birds.
+   ../secrets/config/secrets.config contains the master password for everything.
+   /home/jeff/youfoundme.txt doesn't contain the secret.
+   /home/jeff/supersecret.txt contains ASCII art of a moose.
+f. /home/jeff/final2024/dogserver.py contains a Python server with a secret based on your dog
+
+=====PART 4=====
+a. 192.168.119.128, which I found out by running ifconfig and looking at "inet" under eth0
+b. On the actual WiFi card's interface, my IP address shows as 10.133.16.189 (local to Carleton's network.) VMWare's virtual network interface shows an IP of 192.168.119.1, so I should use that to connect to the Kali VM.
+e. Yes! It is letting me run commands. I know it is Kali because running "uname -a" returns "Linux kali 6.12.25-amd64 #1 SMP PREEMPT_DYNAMIC Kali 6.12.25-1kali1 (2025-04-30) x86_64 GNU/Linux".
+f. Encodings of ASCII characters in hex
+g. It runs bash in interactive mode, and redirects all command outputs to the input (which is the nc listener.)
